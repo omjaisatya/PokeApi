@@ -1,14 +1,13 @@
 import { useState, useEffect } from "react";
+import usePokemonData from "../hooks/usePokemonData";
 import PokemonCard from "../components/PokemonCard";
-import PokemonDetail from "./PokemonDetail";
 import SearchBar from "../components/SearchBar";
 import TypeFilter from "../components/TypeFilter";
 import Loader from "../components/Loader";
 import ErrorMessage from "../components/ErrorMessage";
-import "../App.css";
 
 function Home() {
-  const [pokemonList, setPokemonList] = useState([]);
+  const { pokemonList, isLoading, error } = usePokemonData(151);
   const [allTypes, setAllTypes] = useState([]);
   const [searchTerm, setSearchTerm] = useState("");
   const [selectedType, setSelectedType] = useState([]);
@@ -16,45 +15,13 @@ function Home() {
   const [sortOrder, setSortOrder] = useState("asc");
   const [currentPage, setCurrentPage] = useState(1);
   const [itemsPerPage, setItemsPerPage] = useState(20);
-  const [isLoading, setIsLoading] = useState(true);
-  const [error, setError] = useState("");
 
   useEffect(() => {
-    const fetchPokemonData = async () => {
-      try {
-        const listResponse = await fetch(
-          "https://pokeapi.co/api/v2/pokemon?limit=150"
-        );
-        const listData = await listResponse.json();
-
-        const details = await Promise.all(
-          listData.results.map(async (pokemon) => {
-            const response = await fetch(pokemon.url);
-            return response.json();
-          })
-        );
-
-        const processed = details.map((d) => ({
-          id: d.id,
-          name: d.name,
-          sprite: d.sprites.front_default,
-          types: d.types.map((t) => t.type.name),
-        }));
-
-        const types = [...new Set(processed.flatMap((p) => p.types))].sort();
-
-        setPokemonList(processed);
-        setAllTypes(types);
-        setIsLoading(false);
-      } catch (error) {
-        console.error("Error fetching Pokémon data:", error);
-        setError("Failed to fetch Pokémon data");
-        setIsLoading(false);
-      }
-    };
-
-    fetchPokemonData();
-  }, []);
+    if (pokemonList.length > 0) {
+      const types = [...new Set(pokemonList.flatMap((p) => p.types))].sort();
+      setAllTypes(types);
+    }
+  }, [pokemonList]);
 
   useEffect(() => {
     setCurrentPage(1);
@@ -88,10 +55,12 @@ function Home() {
     startIndex + itemsPerPage
   );
 
-  if (error)
+  if (error) {
     return (
       <ErrorMessage message={error} onRetry={() => window.location.reload()} />
     );
+  }
+
   if (isLoading) return <Loader />;
 
   return (

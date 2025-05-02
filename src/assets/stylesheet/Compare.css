@@ -1,0 +1,132 @@
+.compare-view {
+  padding: var(--space-md);
+  background-color: var(--background);
+  color: var(--text-color);
+  min-height: 100vh;
+}
+
+.compare-view h2 {
+  text-align: center;
+  margin-bottom: var(--space-md);
+}
+
+.selectors {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-sm);
+  margin-bottom: var(--space-md);
+}
+
+.selectors select {
+  padding: var(--space-xs);
+  font-size: 1rem;
+  border-radius: 8px;
+  border: 1px solid #ccc;
+  background-color: var(--card-bg);
+  color: var(--text-color);
+}
+
+.comparison-grid {
+  display: grid;
+  grid-template-columns: 1fr auto 1fr;
+  gap: var(--space-md);
+  align-items: center;
+  justify-items: center;
+  margin-bottom: var(--space-md);
+}
+
+.vs {
+  font-size: 1.5rem;
+  font-weight: bold;
+  color: var(--secondary-color);
+}
+
+.pokemon-stats {
+  background-color: var(--card-bg);
+  border-radius: 1rem;
+  box-shadow: 0 4px 12px var(--shadow-color);
+  padding: var(--space-md);
+  text-align: center;
+  width: 100%;
+  max-width: 320px;
+}
+
+.pokemon-stats img {
+  width: 120px;
+  height: auto;
+  margin-bottom: var(--space-sm);
+}
+
+.pokemon-stats .stats {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-xs);
+}
+
+.stat {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  background-color: var(--background);
+  padding: var(--space-xs);
+  border-radius: 8px;
+}
+
+.stat-bar {
+  flex-grow: 1;
+  height: 20px;
+  margin-left: var(--space-sm);
+  background-color: var(--secondary-color);
+  border-radius: 4px;
+  position: relative;
+  overflow: hidden;
+}
+
+.stat-bar::after {
+  content: attr(data-value);
+  position: absolute;
+  right: 8px;
+  top: -1.2rem;
+  font-size: 0.75rem;
+  color: var(--text-color);
+}
+
+/* Back button */
+.back-button {
+  display: inline-block;
+  margin-top: var(--space-md);
+  padding: var(--space-xs) var(--space-sm);
+  color: var(--primary-color);
+  text-decoration: none;
+  font-weight: bold;
+  border: 1px solid var(--primary-color);
+  border-radius: 8px;
+  transition: all 0.3s ease;
+}
+
+.back-button:hover {
+  background-color: var(--primary-color);
+  color: #fff;
+}
+
+/* Responsive */
+@media (min-width: 600px) {
+  .selectors {
+    flex-direction: row;
+    justify-content: center;
+  }
+
+  .selectors select {
+    max-width: 200px;
+  }
+}
+
+@media (max-width: 599px) {
+  .comparison-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .vs {
+    display: none;
+  }
+}

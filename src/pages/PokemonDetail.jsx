@@ -54,7 +54,11 @@ function PokemonDetail() {
     fetchData();
   }, [id]);
 
-  if (error) return <ErrorMessage message={error} />;
+  if (error) {
+    return (
+      <ErrorMessage message={error} onRetry={() => window.location.reload()} />
+    );
+  }
   if (isLoading) return <Loader />;
 
   return (
@@ -65,9 +69,6 @@ function PokemonDetail() {
       >
         {isFavorite ? "❤️ Remove from Favorites" : "🤍 Add to Favorites"}
       </button>
-      <Link to="/" className="back-button">
-        ← Back to List
-      </Link>
 
       <div className="detail-header">
         <h1>{pokemon.name}</h1>
@@ -143,6 +144,12 @@ function PokemonDetail() {
           </div>
         </div>
       )}
+
+      <div>
+        <Link to="/" className="back-button">
+          ← Back to List
+        </Link>
+      </div>
     </div>
   );
 }
