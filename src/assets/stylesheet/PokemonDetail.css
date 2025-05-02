@@ -1,0 +1,249 @@
+.pokemon-detail {
+  padding: var(--space-md);
+  max-width: 1000px;
+  margin: 0 auto;
+  color: var(--text-color);
+  background: var(--background);
+}
+
+.back-button {
+  display: inline-block;
+  margin-bottom: var(--space-sm);
+  color: var(--secondary-color);
+  text-decoration: none;
+  font-weight: 500;
+}
+
+.detail-header {
+  text-align: center;
+  padding: var(--space-md);
+  background: var(--card-bg);
+  border-radius: 1rem;
+  box-shadow: 0 4px 8px var(--shadow-color);
+  margin-bottom: var(--space-lg);
+}
+
+.detail-header h1 {
+  text-transform: capitalize;
+  font-size: 2rem;
+  margin: 0.25rem 0;
+}
+
+.detail-header p {
+  color: var(--text-color);
+  font-weight: bold;
+  margin-bottom: var(--space-sm);
+}
+
+.detail-sprite {
+  width: 200px;
+  max-width: 100%;
+}
+
+.types {
+  display: flex;
+  justify-content: center;
+  gap: var(--space-xs);
+  flex-wrap: wrap;
+  margin-top: var(--space-sm);
+}
+
+.type {
+  padding: 0.4rem 0.8rem;
+  border-radius: 999px;
+  font-weight: 600;
+  font-size: 0.85rem;
+  color: white;
+  text-transform: capitalize;
+}
+
+.type.fire {
+  background-color: var(--type-fire);
+}
+.type.water {
+  background-color: var(--type-water);
+}
+.type.grass {
+  background-color: var(--type-grass);
+}
+.type.electric {
+  background-color: var(--type-electric);
+}
+.type.psychic {
+  background-color: var(--type-psychic);
+}
+.type.ice {
+  background-color: var(--type-ice);
+}
+.type.dragon {
+  background-color: var(--type-dragon);
+}
+.type.dark {
+  background-color: var(--type-dark);
+}
+.type.fairy {
+  background-color: var(--type-fairy);
+}
+.type.normal {
+  background-color: var(--type-normal);
+}
+.type.fighting {
+  background-color: var(--type-fighting);
+}
+.type.flying {
+  background-color: var(--type-flying);
+}
+.type.poison {
+  background-color: var(--type-poison);
+}
+.type.ground {
+  background-color: var(--type-ground);
+}
+.type.rock {
+  background-color: var(--type-rock);
+}
+.type.bug {
+  background-color: var(--type-bug);
+}
+.type.ghost {
+  background-color: var(--type-ghost);
+}
+.type.steel {
+  background-color: var(--type-steel);
+}
+
+.stats-section,
+.abilities-section,
+.moves-section,
+.evolution-section {
+  margin-bottom: var(--space-lg);
+}
+
+.stats-section h2,
+.abilities-section h2,
+.moves-section h2,
+.evolution-section h2 {
+  font-size: 1.5rem;
+  margin-bottom: var(--space-sm);
+}
+
+.stats-grid {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: var(--space-sm);
+}
+
+@media (min-width: 600px) {
+  .stats-grid {
+    grid-template-columns: 1fr 1fr;
+  }
+}
+
+.stat-item {
+  background: var(--card-bg);
+  border-radius: 0.75rem;
+  padding: var(--space-sm);
+  box-shadow: 0 2px 4px var(--shadow-color);
+}
+
+.stat-name {
+  font-weight: 500;
+  text-transform: capitalize;
+  margin-bottom: 0.25rem;
+  display: block;
+}
+
+.stat-bar {
+  background: #eee;
+  border-radius: 6px;
+  overflow: hidden;
+  position: relative;
+  height: 12px;
+  margin-top: 0.25rem;
+}
+
+[data-theme="dark"] .stat-bar {
+  background: #444;
+}
+
+.stat-fill {
+  height: 100%;
+  background: var(--primary-color);
+  transition: width 0.3s ease-in-out;
+}
+
+.stat-value {
+  font-size: 0.85rem;
+  margin-left: 0.5rem;
+  position: absolute;
+  right: 8px;
+  top: -1.2rem;
+}
+
+.abilities-grid {
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--space-xs);
+}
+
+.ability {
+  background: var(--card-bg);
+  padding: 0.5rem 0.75rem;
+  border-radius: 6px;
+  box-shadow: 0 2px 4px var(--shadow-color);
+  text-transform: capitalize;
+}
+
+.hidden-tag {
+  margin-left: 0.5rem;
+  font-size: 0.8rem;
+  color: var(--text-color);
+  opacity: 0.7;
+}
+
+.moves-grid {
+  display: grid;
+  gap: var(--space-xs);
+  grid-template-columns: repeat(auto-fit, minmax(140px, 1fr));
+}
+
+.move {
+  background: var(--card-bg);
+  padding: 0.5rem;
+  border-radius: 6px;
+  box-shadow: 0 2px 4px var(--shadow-color);
+  text-transform: capitalize;
+}
+
+.evolution-chain {
+  display: flex;
+  gap: var(--space-md);
+  flex-wrap: wrap;
+  justify-content: center;
+  margin-top: var(--space-sm);
+}
+
+.evolution-item {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-decoration: none;
+  color: var(--text-color);
+  transition: transform 0.2s ease;
+}
+
+.evolution-item img {
+  width: 100px;
+  height: 100px;
+  object-fit: contain;
+}
+
+.evolution-item span {
+  margin-top: 0.5rem;
+  text-transform: capitalize;
+  font-weight: 500;
+}
+
+.evolution-item:hover {
+  transform: translateY(-3px);
+}
