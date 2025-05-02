@@ -1,16 +1,31 @@
-export default function TypeFilter({ types, value, onChange }) {
+export default function TypeFilter({
+  types = [],
+  selectedType = [],
+  onChange,
+}) {
+  const handleTypeToggle = (type) => {
+    const newTypes = selectedType.includes(type)
+      ? selectedType.filter((t) => t !== type)
+      : [...selectedType, type];
+    onChange(newTypes);
+  };
+
   return (
-    <select
-      value={value}
-      onChange={(e) => onChange(e.target.value)}
-      className="type-filter"
-    >
-      <option value="">All Types</option>
-      {types.map((type) => (
-        <option key={type} value={type}>
-          {type}
-        </option>
-      ))}
-    </select>
+    <div className="type-filter">
+      <h4>Filter by Type:</h4>
+      <div className="type-buttons">
+        {types.map((type) => (
+          <button
+            key={type}
+            className={`type-toggle ${
+              selectedType.includes(type) ? "active" : ""
+            } ${type}`}
+            onClick={() => handleTypeToggle(type)}
+          >
+            {type}
+          </button>
+        ))}
+      </div>
+    </div>
   );
 }

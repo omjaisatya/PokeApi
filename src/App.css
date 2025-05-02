@@ -143,58 +143,135 @@ body {
 
 .filters {
   display: flex;
-  gap: var(--space-sm);
+  flex-direction: column;
+  gap: var(--space-md);
   margin-bottom: var(--space-lg);
-  flex-wrap: wrap;
+}
+
+.search-bar-container {
+  flex: 1;
+  display: flex;
   justify-content: center;
 }
 
 .search-bar {
-  flex: 1;
-  max-width: 400px;
-  padding: 1rem 1.5rem;
+  width: 100%;
+  max-width: 600px;
+  padding: 0.75rem 1.25rem;
   border: none;
-  border-radius: 50px;
-  background: var(--card-bg);
-  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.05);
-  font-size: 1.1rem;
-  transition: all 0.3s ease;
+  border-radius: 999px;
+  background-color: var(--card-bg);
+  box-shadow: 0 4px 6px var(--shadow-color);
+  font-size: 1rem;
+  transition: box-shadow 0.3s, transform 0.2s;
 }
 
 .search-bar:focus {
   outline: none;
-  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+  box-shadow: 0 6px 12px rgba(0, 0, 0, 0.1);
   transform: translateY(-1px);
+  color: var(--text-color);
 }
 
-.search-bar,
-.type-filter {
-  background: var(--filter-bg);
+.search-bar:focus::placeholder {
   color: var(--text-color);
-
-  font-size: clamp(0.9rem, 1.6vw, 1.1rem);
-  padding: var(--space-xs) var(--space-sm);
 }
 
 .type-filter {
   padding: 1rem 1.5rem;
   border: none;
-  border-radius: 50px;
+  color: var(--text-color);
+  border-radius: 0.5rem;
   background: var(--card-bg);
   box-shadow: 0 4px 6px rgba(0, 0, 0, 0.05);
-  font-size: 1rem;
-  cursor: pointer;
-  appearance: none;
-  background-image: url("data:image/svg+xml;charset=UTF-8,%3csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='currentColor' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'%3e%3cpolyline points='6 9 12 15 18 9'%3e%3c/polyline%3e%3c/svg%3e");
-  background-repeat: no-repeat;
-  background-position: right 1rem center;
-  background-size: 1em;
-  padding-right: 2.5rem;
 }
 
-.type-filter option {
-  background: var(--filter-bg);
-  color: var(--text-color);
+.type-filter h4 {
+  margin-bottom: 0.5rem;
+  font-size: 1rem;
+  font-weight: 600;
+}
+
+.type-buttons {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.5rem;
+}
+
+.type-toggle {
+  padding: 0.4rem 0.75rem;
+  border: none;
+  border-radius: 6px;
+  color: white;
+  font-weight: 500;
+  cursor: pointer;
+  text-transform: capitalize;
+  transition: transform 0.2s, filter 0.2s;
+}
+
+.type-toggle.active {
+  filter: brightness(1.1);
+  transform: scale(1.05);
+  box-shadow: 0 2px 6px rgba(0, 0, 0, 0.15);
+}
+
+.type-toggle.grass {
+  background: #78c850;
+}
+.type-toggle.fire {
+  background: #f08030;
+}
+.type-toggle.water {
+  background: #6890f0;
+}
+.type-toggle.bug {
+  background: #a8b820;
+}
+.type-toggle.normal {
+  background: #a8a878;
+}
+.type-toggle.poison {
+  background: #a040a0;
+}
+.type-toggle.electric {
+  background: #f8d030;
+}
+.type-toggle.ground {
+  background: #e0c068;
+}
+.type-toggle.fairy {
+  background: #ee99ac;
+}
+.type-toggle.fighting {
+  background: #c03028;
+}
+.type-toggle.psychic {
+  background: #f85888;
+}
+.type-toggle.rock {
+  background: #b8a038;
+}
+.type-toggle.ghost {
+  background: #705898;
+}
+.type-toggle.ice {
+  background: #98d8d8;
+}
+.type-toggle.dragon {
+  background: #7038f8;
+}
+.type-toggle.dark {
+  background: #705848;
+}
+.type-toggle.steel {
+  background: #b8b8d0;
+}
+.type-toggle.flying {
+  background: #a890f0;
+}
+
+.controls {
+  margin-bottom: 2rem;
 }
 
 .pokemon-list {
@@ -473,4 +550,89 @@ body {
     height: 100px;
     margin: -2.5rem auto 0.5rem;
   }
+}
+
+.sort-pagination {
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--space-md);
+  justify-content: space-between;
+  align-items: flex-start;
+  padding: var(--space-sm);
+  border-radius: 0.5rem;
+  background-color: var(--card-bg);
+  box-shadow: 0 4px 8px var(--shadow-color);
+}
+
+.sort-controls,
+.pagination-controls {
+  display: flex;
+  flex-direction: column;
+  gap: 0.75rem;
+}
+
+@media (min-width: 600px) {
+  .sort-controls,
+  .pagination-controls {
+    flex-direction: row;
+    align-items: center;
+  }
+
+  .sort-controls label,
+  .pagination-controls label {
+    flex-direction: row;
+    gap: var(--space-xs);
+    align-items: center;
+  }
+}
+
+.sort-controls label,
+.pagination-controls label {
+  display: flex;
+  flex-direction: column;
+  font-size: 0.9rem;
+  color: var(--text-color);
+}
+
+select {
+  padding: 0.5rem;
+  border-radius: 0.375rem;
+  border: 1px solid #ccc;
+  background-color: var(--card-bg);
+  color: var(--text-color);
+  font-size: 1rem;
+  transition: border-color 0.2s;
+}
+
+select:focus {
+  border-color: var(--primary-color);
+  outline: none;
+}
+
+.page-navigation {
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+  margin-top: 1rem;
+}
+
+.page-navigation button {
+  padding: 0.4rem 0.8rem;
+  background-color: var(--primary-color);
+  border: none;
+  border-radius: 0.375rem;
+  color: white;
+  cursor: pointer;
+  font-weight: bold;
+  transition: background-color 0.2s;
+}
+
+.page-navigation button:disabled {
+  background-color: #cccccc;
+  cursor: not-allowed;
+}
+
+.page-navigation span {
+  font-size: 0.95rem;
+  font-weight: 500;
 }
